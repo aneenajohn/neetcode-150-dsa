@@ -26,6 +26,8 @@
  * @param {number} k
  * @return {number[]}
  */
+
+// Time Complexity => O(n log n)
 var topKFrequent = function (nums, k) {
   let map = new Map();
   for (let num of nums) {
@@ -50,3 +52,6 @@ var topKFrequent = function (nums, k) {
 };
 
 console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
+
+// TODO: time complexity must be better than O(n log n),
+// DOCS: We can use bucket sort to solve it in O(n)
