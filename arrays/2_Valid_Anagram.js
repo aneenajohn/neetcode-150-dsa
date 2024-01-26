@@ -25,13 +25,27 @@
  * @param {string} t
  * @return {boolean}
  */
+
+// Better solution
+const isAnagram_v1 = (s, t) => {
+  const sortedS = s.split('').sort().join('');
+  const sortedT = t.split('').sort().join('');
+
+  if (sortedS === sortedT) return true;
+  else return false;
+};
+
+console.log(isAnagram_v1('anagram', 'nagaram'));
+console.log(isAnagram_v1('rat', 'car'));
+console.log(isAnagram_v1('rat', 'care'));
+
 // M1 => Accepted Solution:
 const isAnagram = function (s, t) {
   if (t.length !== s.length) {
     return false;
   } else {
-    const lettersOfS = s.split("");
-    const lettersOfT = t.split("");
+    const lettersOfS = s.split('');
+    const lettersOfT = t.split('');
     let keysOfS = {},
       keysOfT = {};
     const returnFreqObj = (arr, obj) => {
@@ -54,6 +68,6 @@ const isAnagram = function (s, t) {
   }
 };
 
-console.log(isAnagram("anagram", "nagaram"));
-console.log(isAnagram("rat", "car"));
-console.log(isAnagram("rat", "care"));
+console.log(isAnagram('anagram', 'nagaram'));
+console.log(isAnagram('rat', 'car'));
+console.log(isAnagram('rat', 'care'));
