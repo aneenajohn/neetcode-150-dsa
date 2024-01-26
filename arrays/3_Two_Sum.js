@@ -43,7 +43,6 @@ const twoSum = function (nums, target) {
     for (let j = i + 1; j < nums.length; j++) {
       twoSum = nums[i] + nums[j];
       if (twoSum === target) {
-        console.log(i, j);
         return [i, j];
       }
     }
@@ -51,3 +50,51 @@ const twoSum = function (nums, target) {
 };
 
 console.log(twoSum([2, 7, 11, 15], 9));
+console.log(twoSum([3, 3], 6));
+console.log(twoSum([3, 2, 4], 6));
+console.log(twoSum([2, 7, 11, 15], 9));
+
+console.log('Added v1');
+
+// With hashing, O(n) time complexity;
+const twoSum_v1 = (nums, target) => {
+  let numsMap = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    let compliment = target - nums[i];
+
+    if (numsMap.has(compliment)) {
+      return [numsMap.get(compliment), i];
+    }
+
+    numsMap.set(nums[i], i);
+  }
+};
+
+console.log(twoSum_v1([2, 7, 11, 15], 9));
+console.log(twoSum_v1([3, 3], 6));
+console.log(twoSum_v1([3, 2, 4], 6));
+console.log(twoSum_v1([2, 7, 11, 15], 9));
+
+console.log('Added v2');
+
+// With hashing, using objects:
+
+const twoSum_v2 = (nums, target) => {
+  const numsMap = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    let compliment = target - nums[i];
+
+    if (Object.hasOwn(numsMap, compliment)) {
+      return [numsMap[compliment], i];
+    }
+
+    numsMap[nums[i]] = i;
+  }
+};
+
+console.log(twoSum_v2([2, 7, 11, 15], 9));
+console.log(twoSum_v2([3, 3], 6));
+console.log(twoSum_v2([3, 2, 4], 6));
+console.log(twoSum_v2([2, 7, 11, 15], 9));
