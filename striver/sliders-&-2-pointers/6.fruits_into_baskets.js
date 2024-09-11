@@ -13,7 +13,7 @@ const arr = [3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4];
 
 const k = 2; //DOCS: k => Number of distinct fruits
 
-// BF
+// Bruteforce
 //TC => O(n^2) SC => O(1)
 function maxFruits(arr) {
   let fruitsCount = 0;
@@ -85,18 +85,21 @@ function maxFruits_v2(arr, k) {
       fruitsMap.set(arr[r], 1);
     }
 
-    if (fruitsMap.size > 2) {
+    if (fruitsMap.size > k) {
       fruitsMap.set(arr[l], fruitsMap.get(arr[l]) - 1);
-      l++;
       if (fruitsMap.get(arr[l]) === 0) {
         fruitsMap.delete(arr[l]);
       }
+      l++;
     }
 
     if (fruitsMap.size <= k) {
       maxLength = Math.max(maxLength, r - l + 1);
     }
+
+    r++;
   }
+  return maxLength;
 }
 
 console.log('Optimised O(n) solution:', maxFruits_v2(arr, k));
