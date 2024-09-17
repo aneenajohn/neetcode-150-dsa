@@ -34,6 +34,8 @@ console.log(countOfSubArrays(bin_array, goal));
 // Find all subarrays where the sum is <= goal
 // Count of subarrays where sum is goal = f(arr, goal) - f(arr,goal -1)
 
+// TC: O(2N)
+// SC: O(1)
 function countOfSubArrays_v1(arr, goal) {
   let left = 0,
     right = 0,
@@ -42,9 +44,11 @@ function countOfSubArrays_v1(arr, goal) {
 
   if (goal < 0) return 0; // edge case to handle when the function is called f(arr, goal -1) and so if goal becomes less than zero;
   while (right < arr.length) {
+    //TC: O(n)
     sum += arr[right];
 
     while (sum > goal) {
+      //TC: O(n) at the worst case for overall length and not for each elem
       sum -= arr[left];
       left++;
     }
@@ -66,6 +70,6 @@ console.log('2:', countOfSubArrays_v1(bin_array, goal - 1)); // count of all sub
 // count of all subarrays where the sum === 2 = // count of all subarrays where the sum <= 2 - count of all subarrays where the sum <= 1
 const result =
   countOfSubArrays_v1(bin_array, goal) -
-  countOfSubArrays_v1(bin_array, goal - 1);
+  countOfSubArrays_v1(bin_array, goal - 1); // TC: As the fucntion is called twice => TC:(2*2N)
 
 console.log('Res:', result);
