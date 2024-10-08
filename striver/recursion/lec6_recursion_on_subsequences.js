@@ -1,4 +1,4 @@
-// ?Print all subsequences of the given for eg: arr = [3,1,2] => 
+// ?Print all subsequences of the given for eg: arr = [3,1,2] =>
 // DOCS: 1. Print all subsequences -- A contiguous/non-contiguous sequences which follows the order
 // At each index, you have 2 options, whether to take an element or skip(no take)
 const arr = [3, 1, 2];
@@ -32,3 +32,35 @@ printAllSubseq(0, [], arr);
 // The maximum size of this array would be n
 // Therefore, O(n) space is used for storing each subsequence
 
+console.log(
+  '=========================================================================='
+);
+
+// ?Print all subsequences of the given for eg: arr = [1,2,1] where sum = 2
+
+const arr2 = [1, 2, 1];
+const sum = 2; // so the output should be [1,1] & [2]
+
+function printSubSeq(ind, arr, originalArr, sum, currentSum) {
+  if (ind === originalArr.length) {
+    if (currentSum === sum) {
+      console.log(arr);
+    }
+    return;
+  }
+  arr.push(originalArr[ind]);
+  currentSum += originalArr[ind];
+
+  printSubSeq(ind + 1, arr, originalArr, sum, currentSum);
+
+  arr.pop();
+  currentSum -= originalArr[ind];
+
+  printSubSeq(ind + 1, arr, originalArr, sum, currentSum);
+}
+
+printSubSeq(0, [], arr2, sum, 0);
+
+console.log(
+  '=========================================================================='
+);
