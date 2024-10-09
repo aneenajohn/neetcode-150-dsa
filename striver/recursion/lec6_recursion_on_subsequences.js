@@ -148,6 +148,10 @@ Count the number of subsequences where the condition is satisfied
 */
 
 function countTheNumOfSubSeq(ind, arr, originalArr, sum, currentSum) {
+  // Optimisation: Strictly when we have arrays of only +ve nums
+  if (currentSum > sum) return 0; //Can never satisfy the required condition.
+
+  //Base case check
   if (ind === originalArr.length) {
     if (currentSum === sum) {
       return 1;
@@ -155,11 +159,11 @@ function countTheNumOfSubSeq(ind, arr, originalArr, sum, currentSum) {
     return 0;
   }
 
-  arr.push(originalArr[ind]);
+  // arr.push(originalArr[ind]); // not needed as we don't the arr
   currentSum += originalArr[ind];
   let l = countTheNumOfSubSeq(ind + 1, arr, originalArr, sum, currentSum);
 
-  arr.pop();
+  // arr.pop(); // not needed as we don't the arr
   currentSum -= originalArr[ind];
   let r = countTheNumOfSubSeq(ind + 1, arr, originalArr, sum, currentSum);
 
