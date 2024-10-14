@@ -30,7 +30,7 @@ var subsets = function (nums) {
   function recursiveSubs(ind, arr) {
     if (ind >= nums.length) {
       console.log(arr);
-      result.push([...arr]);
+      result.push([...arr]); //NOTE: Refer the doc below
       return;
     }
     arr.push(nums[ind]);
@@ -44,3 +44,12 @@ var subsets = function (nums) {
 
 subsets([1, 2, 3]);
 subsets([0]);
+
+/*DOCS: The reason we use [...arr] instead of just arr is to avoid reference issues. Let's elaborate:
+
+If we used result.push(arr) without the spread operator, we would be pushing a reference to the same arr array that we're modifying throughout the recursion.
+This would mean that all elements in result would actually be references to the same array, which would end up empty at the end of the recursion.
+By using [...arr], we create a new array with the current contents of arr. This new array is independent of the original arr.
+This ensures that each subset we add to result is a snapshot of arr at that particular point in the recursion, preserving the correct subsets.
+
+*/
